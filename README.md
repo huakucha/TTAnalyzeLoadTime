@@ -6,6 +6,7 @@
 * 仓库中提供了源码以及二进制的文件，源码提供了整个AnalyzeLoadTime的全部文件`TTLoadTime.mm`,二进制文件为一个动态库（为什么提供动态库文末有介绍），动态库为尽可能提前执行Load Method Swizzling提供了可能
 * 重写`_getObjc2NonlazyCategoryList `、`_getObjc2NonlazyClassList `(runtime源码中有介绍),可以快速拿到全部load的所属Class以及load 的IMP地址
 * 防止运行环境被破坏使用`method_setImplementation`构建block执行原函数
+* 寻找mach-o中的load以及Swizzle共耗时4毫秒
 
 
 #### Podfile
