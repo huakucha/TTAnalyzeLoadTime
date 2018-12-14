@@ -20,6 +20,7 @@ DerivedData
 *.ipa
 
 Example/Index
+build_framework.sh
 
 # Bundler
 .bundle

@@ -17,9 +17,6 @@
 #include <string>
 
 
-@implementation TTLoadTimeMode : NSObject
-@end
-
 @interface TTLoadTime : NSObject
 @end
 
@@ -161,7 +158,15 @@ struct method_list_t : entsize_list_tt<method_t, method_list_t, 0x3> {
 
 #pragma mark -- runtime typedef
 typedef struct classref * classref_t;
+//typedef struct mach_header_64 headerType;
+
+
+#ifndef __LP64__
+typedef struct mach_header headerType;
+#else
 typedef struct mach_header_64 headerType;
+#endif
+
 
 struct category_t {
     const char *name;
@@ -189,6 +194,8 @@ GETSECT(_getObjc2NonlazyCategoryList, category_t *,    "__objc_nlcatlist");
 template <typename T>
 T* getDataSection(const headerType *mhdr, const char *sectname, size_t *outBytes, size_t *outCount) {
     unsigned long byteCount = 0;
+#ifndef __LP64__
+    
     T* data = (T*)getsectiondata(mhdr, "__DATA", sectname, &byteCount);
     if (!data) {
         data = (T*)getsectiondata(mhdr, "__DATA_CONST", sectname, &byteCount);
@@ -196,6 +203,21 @@ T* getDataSection(const headerType *mhdr, const char *sectname, size_t *outBytes
     if (!data) {
         data = (T*)getsectiondata(mhdr, "__DATA_DIRTY", sectname, &byteCount);
     }
+#else
+    const struct mach_header_64 *mhp64 = (const struct mach_header_64 *)mhdr;
+
+    
+    T* data = (T*)getsectiondata(mhp64, "__DATA", sectname, &byteCount);
+    if (!data) {
+        data = (T*)getsectiondata(mhp64, "__DATA_CONST", sectname, &byteCount);
+    }
+    if (!data) {
+        data = (T*)getsectiondata(mhp64, "__DATA_DIRTY", sectname, &byteCount);
+    }
+    
+#endif
+
+    
     if (outBytes) *outBytes = byteCount;
     if (outCount) *outCount = byteCount / sizeof(T);
     return data;
