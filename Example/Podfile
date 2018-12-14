@@ -3,7 +3,7 @@
 platform :ios, '8.0'
 
 target 'TTAnalyzeLoadTime_Example' do
-  pod 'TTAnalyzeLoadTime', :path => '../'
+    #pod 'TTAnalyzeLoadTime', :path => '../'
 
   target 'TTAnalyzeLoadTime_Tests' do
     inherit! :search_paths
