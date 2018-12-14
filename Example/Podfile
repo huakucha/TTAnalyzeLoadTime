@@ -1,0 +1,23 @@
+
+
+platform :ios, '8.0'
+
+target 'TTAnalyzeLoadTime_Example' do
+  pod 'TTAnalyzeLoadTime', :path => '../'
+
+  target 'TTAnalyzeLoadTime_Tests' do
+    inherit! :search_paths
+    
+  end
+end
+
+
+#post_install do |installer_representation|
+#    installer_representation.pods_project.targets.each do |target|
+#        if target.name.to_s == 'TTAnalyzeLoadTime'
+#            target.build_configurations.each do |config|
+#                config.build_settings['MACH_O_TYPE'] = 'mh_dylib'
+#            end
+#        end
+#    end
+#end

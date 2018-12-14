@@ -1,0 +1,16 @@
+PODS:
+  - TTAnalyzeLoadTime (0.1.0)
+
+DEPENDENCIES:
+  - TTAnalyzeLoadTime (from `../`)
+
+EXTERNAL SOURCES:
+  TTAnalyzeLoadTime:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  TTAnalyzeLoadTime: 181a23a08518028afbd30ebb0769abb2d1a110e6
+
+PODFILE CHECKSUM: e759a89f7527698d5d8db21d623a75e2603724d9
+
+COCOAPODS: 1.5.3

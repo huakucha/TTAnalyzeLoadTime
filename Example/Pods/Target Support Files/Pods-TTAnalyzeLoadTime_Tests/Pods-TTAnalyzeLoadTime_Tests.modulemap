@@ -1,0 +1,6 @@
+framework module Pods_TTAnalyzeLoadTime_Tests {
+  umbrella header "Pods-TTAnalyzeLoadTime_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
