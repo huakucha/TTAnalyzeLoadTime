@@ -29,8 +29,15 @@ $ pod install
 
 ####Usage
 ```ruby
-#import "TTLoadTime.h"
+#import <TTLoadTime/TTLoadTime.h>
 
 printLoadCostsInfo();
 ```
+####TODO
+1. 白名单
+2. 格式化打印
+
+####参考文章
+* https://juejin.im/post/5c0bb2e8e51d4529ee233fee 作者:CoderLin
+* https://mp.weixin.qq.com/s/kL__CM3CfP_7i8Obg8qzWQ 作者: everettjf
 
