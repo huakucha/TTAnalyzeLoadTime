@@ -13,7 +13,6 @@
 #include <mach-o/dyld.h>
 #include <mach-o/nlist.h>
 #include <mach-o/getsect.h>
-#include <vector>
 #include <string>
 
 
@@ -194,7 +193,7 @@ GETSECT(_getObjc2NonlazyCategoryList, category_t *,    "__objc_nlcatlist");
 template <typename T>
 T* getDataSection(const headerType *mhdr, const char *sectname, size_t *outBytes, size_t *outCount) {
     unsigned long byteCount = 0;
-#ifndef __LP64__
+    
     
     T* data = (T*)getsectiondata(mhdr, "__DATA", sectname, &byteCount);
     if (!data) {
@@ -203,19 +202,23 @@ T* getDataSection(const headerType *mhdr, const char *sectname, size_t *outBytes
     if (!data) {
         data = (T*)getsectiondata(mhdr, "__DATA_DIRTY", sectname, &byteCount);
     }
-#else
-    const struct mach_header_64 *mhp64 = (const struct mach_header_64 *)mhdr;
-
     
-    T* data = (T*)getsectiondata(mhp64, "__DATA", sectname, &byteCount);
-    if (!data) {
-        data = (T*)getsectiondata(mhp64, "__DATA_CONST", sectname, &byteCount);
-    }
-    if (!data) {
-        data = (T*)getsectiondata(mhp64, "__DATA_DIRTY", sectname, &byteCount);
-    }
-    
-#endif
+//#ifndef __LP64__
+//    
+//    
+//#else
+//    const struct mach_header_64 *mhp64 = (const struct mach_header_64 *)mhdr;
+//
+//    
+//    T* data = (T*)getsectiondata(mhp64, "__DATA", sectname, &byteCount);
+//    if (!data) {
+//        data = (T*)getsectiondata(mhp64, "__DATA_CONST", sectname, &byteCount);
+//    }
+//    if (!data) {
+//        data = (T*)getsectiondata(mhp64, "__DATA_DIRTY", sectname, &byteCount);
+//    }
+//    
+//#endif
 
     
     if (outBytes) *outBytes = byteCount;
@@ -317,7 +320,6 @@ void swizzeLoadMethodInClasss(Class cls, BOOL isCategary){
                 LoadRulerBegin
                 load_IMP(target,action);
                 
-                
                 CFTimeInterval end = CACurrentMediaTime();
                 if(!g_loadcosts){
                     g_loadcosts = [[NSMutableArray alloc] initWithCapacity:10];
@@ -363,6 +365,8 @@ void printLoadCostsInfo(){
 }
 
 
+
+
 #pragma mark -- load
 +(void)load{
     CFTimeInterval begin = CACurrentMediaTime();
@@ -393,17 +397,26 @@ void printLoadCostsInfo(){
         swizzeLoadMethodInClasss(cls, YES);
     }
 
+    //Implicitly Link Objective-C Runtime Support
+    
     size_t count = 0;
     classref_t *nlclslist = get_non_lazy_class_list(&count);
+// ios deployment target 8.0有一个问题 '__ARCLite__'这个Class有点特殊，这个类也实现了load
+//最后一位指向的结构体中isa变量指向0x00000000的指针，故排除
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 90000
+#else
+    count--;
+#endif
+
     for (int i = 0; i < count; i++) {
-            Class cls = (Class)CFBridgingRelease(nlclslist[i]);
-            cls = object_getClass(cls);
-            NSLog(@"classref_t:%@",cls);
+        Class cls = (Class)CFBridgingRelease(nlclslist[i]);
+        cls = object_getClass(cls);
+        NSLog(@"classref_t:%@",cls);
             
-            if(![[loadCS allKeys] containsObject:[NSString stringWithFormat:@"%@",cls]])
-            {
-                swizzeLoadMethodInClasss(cls, NO);
-            }
+        if(![[loadCS allKeys] containsObject:[NSString stringWithFormat:@"%@",cls]])
+        {
+            swizzeLoadMethodInClasss(cls, NO);
+        }
     }
     
     CFTimeInterval end = CACurrentMediaTime();

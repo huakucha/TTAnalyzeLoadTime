@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0494794A21C35DB4006B24BA /* TTLoadTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0494794321C35DB4006B24BA /* TTLoadTime.framework */; };
 		0494794B21C35DB4006B24BA /* TTLoadTime.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0494794321C35DB4006B24BA /* TTLoadTime.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0494795121C35E0A006B24BA /* TTLoadTime.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0494795021C35E0A006B24BA /* TTLoadTime.mm */; };
+		0494795121C35E0A006B24BA /* TTLoadTime.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0494795021C35E0A006B24BA /* TTLoadTime.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		0494795321C35E6B006B24BA /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0494795221C35E6B006B24BA /* libc++.1.tbd */; };
 		0494795421C35E72006B24BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		0494795621C35E7D006B24BA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0494795521C35E7D006B24BA /* QuartzCore.framework */; };
@@ -523,6 +523,7 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
@@ -549,7 +550,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = TTLoadTime/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -570,6 +571,7 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
@@ -597,7 +599,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = TTLoadTime/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -619,6 +621,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -644,7 +647,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -659,6 +662,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -677,7 +681,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -689,12 +693,13 @@
 			baseConfigurationReference = E3473AFBE81158F5E2E3FCEC /* Pods-TTAnalyzeLoadTime_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_LINK_OBJC_RUNTIME = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = BMP99N9345;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TTAnalyzeLoadTime/TTAnalyzeLoadTime-Prefix.pch";
 				INFOPLIST_FILE = "TTAnalyzeLoadTime/TTAnalyzeLoadTime-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
@@ -708,12 +713,13 @@
 			baseConfigurationReference = 0842922E99D635E728547A19 /* Pods-TTAnalyzeLoadTime_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_LINK_OBJC_RUNTIME = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = BMP99N9345;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TTAnalyzeLoadTime/TTAnalyzeLoadTime-Prefix.pch";
 				INFOPLIST_FILE = "TTAnalyzeLoadTime/TTAnalyzeLoadTime-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
