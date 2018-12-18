@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TTAnalyzeLoadTime'
-  s.version          = '1.0.0'
+  s.version          = '1.0.2'
   s.summary          = 'A short description of TTAnalyzeLoadTime.'
 
 # This description is used to generate tags and improve search results.
@@ -32,7 +32,7 @@ TODO: Add long description of the pod here.
 
   #s.source_files = 'TTAnalyzeLoadTime/Classes/**/*'
   s.vendored_frameworks = 'Products/*.framework'
-  
+
   # s.resource_bundles = {
   #   'TTAnalyzeLoadTime' => ['TTAnalyzeLoadTime/Assets/*.png']
   # }
