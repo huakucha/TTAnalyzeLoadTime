@@ -409,6 +409,11 @@ void printLoadCostsInfo(){
 #endif
 
     for (int i = 0; i < count; i++) {
+        classref_t nlcls = nlclslist[i];
+        Class cls = (__bridge Class)nlcls;
+        if ([@"__ARCLite__" isEqualToString:NSStringFromClass(cls)]) {
+            continue;
+        }
         Class cls = (Class)CFBridgingRelease(nlclslist[i]);
         cls = object_getClass(cls);
         NSLog(@"classref_t:%@",cls);
