@@ -16,3 +16,17 @@
 }
 
 @end
+
+
+@interface TTViewController (PPLoadTimer)
+
+@end
+
+@implementation TTViewController (PPLoadTimer)
+
++(void)load
+{
+    NSLog(@"TTViewController (PPLoadTimer) load");
+}
+
+@end

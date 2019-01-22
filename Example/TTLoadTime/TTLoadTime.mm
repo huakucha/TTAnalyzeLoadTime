@@ -384,6 +384,7 @@ void printLoadCostsInfo(){
     }
 
     nlcategarylist = get_non_lazy_categary_list(&categaryCount);
+    
     for (int i = 0; i < categaryCount; i++) {
         Class cls = (Class)CFBridgingRelease(nlcategarylist[i]->cls);
         cls = object_getClass(cls);
@@ -391,11 +392,22 @@ void printLoadCostsInfo(){
         category_t *cat = nlcategarylist[i];
         _VIMP load_IMP = (_VIMP)_category_getLoadMethod(cat);
         [loadMS addEntriesFromDictionary:@{[NSString stringWithFormat:@"%p",load_IMP]:[NSString stringWithFormat:@"%@(%@)",cls,name]}];
-        [loadCS addEntriesFromDictionary:@{[NSString stringWithFormat:@"%@",cls]:cls}];
-        
-        NSLog(@"category_t:%@ (%@)",cls,name);
-        swizzeLoadMethodInClasss(cls, YES);
     }
+    
+    
+    for (int i = 0; i < categaryCount; i++) {
+        Class cls = (Class)CFBridgingRelease(nlcategarylist[i]->cls);
+        cls = object_getClass(cls);
+        
+        
+        if(![[loadCS allKeys] containsObject:[NSString stringWithFormat:@"%@",cls]])
+        {
+            swizzeLoadMethodInClasss(cls, YES);
+        }
+        
+        [loadCS addEntriesFromDictionary:@{[NSString stringWithFormat:@"%@",cls]:cls}];
+    }
+    
 
     //Implicitly Link Objective-C Runtime Support
     
@@ -415,7 +427,7 @@ void printLoadCostsInfo(){
             
         if(![[loadCS allKeys] containsObject:[NSString stringWithFormat:@"%@",cls]])
         {
-            swizzeLoadMethodInClasss(cls, NO);
+            //swizzeLoadMethodInClasss(cls, NO);
         }
     }
     
