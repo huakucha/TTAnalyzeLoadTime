@@ -432,7 +432,7 @@ void printLoadCostsInfo(){
             
         if(![[loadCS allKeys] containsObject:[NSString stringWithFormat:@"%@",cls]])
         {
-            //swizzeLoadMethodInClasss(cls, NO);
+            swizzeLoadMethodInClasss(cls, NO);
         }
     }
     

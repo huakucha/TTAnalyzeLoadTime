@@ -41,3 +41,16 @@
 }
 
 @end
+
+@interface TTDemo:NSObject
+
+@end
+
+@implementation TTDemo
+
++(void)load
+{
+    NSLog(@"TTDemo load");
+}
+
+@end
